@@ -8,13 +8,16 @@
             {{session('error')}}
             </div>
             @endif
+            @if ($errors->has('userName'))
+    <span class="text-danger">{{ $errors->first('userName') }}</span>
+      @endif
             
           <section class="login_content">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
               <h1>Login Form</h1>
               <div>
-                <input type="text" placeholder="Username" class="form-control" class="form-control @error('userName') is-invalid @enderror" name="userName" value="{{ old('userName') }}" required autocomplete="email" autofocus />
+                <input type="text" placeholder="Username" class="form-control" class="form-control @error('userName') is-invalid @enderror" name="userName" value="{{ old('userName') }}" required autocomplete="userName" autofocus />
                 @error('userName')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -31,7 +34,9 @@
             </div>
               <div>
               <button type="submit" class="btn btn-primary">Log in</button>
-                <a class="reset_pass" href="#">Lost your password?</a>
+              @if (Route::has('password.request'))
+                 <a class="btn btn-link" href="{{ route('password.request') }}">Lost your password?</a>
+                 @endif
               </div>
 
               <div class="clearfix"></div>

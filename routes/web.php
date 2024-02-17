@@ -31,3 +31,7 @@ Route::get('single/{id}', [CarController::class,'show'])->name('single');
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::get('/register', function () {
+   return view('auth.register');
+})->name('register');
+

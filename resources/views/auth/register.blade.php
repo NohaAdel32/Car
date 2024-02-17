@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('reg')
-<div id="register" class="animate form registration_form">
+@section('content')
+<div id="register" class="login_wrapper">
           <section class="login_content">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -39,7 +39,7 @@
             @enderror 
             </div>
               <div>
-                <a class="btn btn-default submit">Submit</a>
+              <button type="submit" class="btn btn-primary">Submit</button>
               </div>
 
               <div class="clearfix"></div>
@@ -47,7 +47,7 @@
               <div class="separator">
                 <p class="change_link">Already a member ?
                
-                  <a href="{{ route('signin') }}" class="to_register"> Log in </a>
+                  <a href="{{ route('login') }}" class="to_register"> Log in </a>
                 </p>
                 <div class="clearfix"></div>
                 <br />

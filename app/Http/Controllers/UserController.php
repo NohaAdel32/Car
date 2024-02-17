@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Notifications\VerifyEmail;
-use Carbon\Carbon;
+
 
 class UserController extends Controller
 {
@@ -32,6 +32,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+       
         $data=$request->validate([
             'fullName'=>'required|string|max:50',
             'userName'=>'required|string|max:50|unique:users',
@@ -40,11 +41,10 @@ class UserController extends Controller
             
             ]);        
             $data['active']= isset($request->active);
-            $isActive = $request->has('active');
            $data['password'] = Hash::make($data['password']);
-          User::create($data);
-          if ($isActive && $user->active == 1) {
-            $user->notify(new VerifyEmail);
+         $user= User::create($data);
+          if ($user->active && is_null($user->email_verified_at)) {
+            $user->markEmailAsVerified();
         }
            return redirect('admin/user')->with('success', 'Insert Data Success');
     }
@@ -80,15 +80,16 @@ class UserController extends Controller
             ]);        
             $data['active']= isset($request->active);
             
-           // $isActive = $request->has('active');
-           // $data['email_verified_at'] = $isActive ? Carbon::now() : null;
            User::where('id', $id)->update($data);
-           $user = User::find($id);
-    if ($user->active) {
-        $user->update(['email_verified_at' => True]);
-    } else {
-        $user->update(['email_verified_at' => null]); 
-    }
+           $user = User::findOrFail($id);
+
+           // If active and email_verified_at is null, mark email as verified
+           if ($user->active && is_null($user->email_verified_at)) {
+               $user->markEmailAsVerified();
+           } elseif (!$user->active) {
+               $user->email_verified_at = null;
+               $user->save();
+           }
 
            return redirect('admin/user')->with('success', 'Update Data Success');
     }
