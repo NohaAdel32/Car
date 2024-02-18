@@ -37,7 +37,7 @@
                 </div>
                 <div>
                   <p>{{$car->content}}.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
+                  <p><a href="single/{{ $car->id }}" class="btn btn-primary btn-sm">Rent Now</a></p>
                 </div>
               </div>
 

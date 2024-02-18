@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
        
-        return redirect('admin/car');
+        return redirect('admin/user');
     }
 }

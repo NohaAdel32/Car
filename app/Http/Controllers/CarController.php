@@ -81,7 +81,7 @@ class CarController extends Controller
             'luggage'=> 'required|integer',
             'doors'=> 'required|integer',
             'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
-            'content' => 'required|string',
+            'content' => 'required|string|max:100',
             'passengers' => 'required|integer',
             'price' => 'required',
             'cat_id' => 'required',
