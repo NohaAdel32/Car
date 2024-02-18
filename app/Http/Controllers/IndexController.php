@@ -16,7 +16,7 @@ class IndexController extends Controller
           
     public function listing(){
       $testimonial=Testimonial::where('published', 1)->get();
-      $cars=Car::paginate(6);
+      $cars=Car::where('active', 1)->paginate(6);
         return view('listing', compact('testimonial','cars')); 
               }
     public function testimonial(){

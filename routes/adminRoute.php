@@ -9,6 +9,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 
+
 Route::prefix('admin')->middleware('verified')->group(function () {
 
     //contact us
@@ -49,5 +50,6 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::put('updateUs/{id}', [UserController::class,'update'])->name('updateUs');
 });
 Route::post('login', [LoginController::class, 'login'])->name('login');
+
 Auth::routes(['verify'=>true]);
 

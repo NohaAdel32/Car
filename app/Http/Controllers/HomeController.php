@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cars=Car::get();
-        return view('admin.cars.list', compact('cars'));
+       
+        return redirect('admin/car');
     }
 }
