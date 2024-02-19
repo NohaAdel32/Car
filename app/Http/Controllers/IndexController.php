@@ -31,5 +31,9 @@ public function blog(){
 public function about(){
       return  view('about'); 
                 }
+public function __invoke()
+{
+    return redirect("/");
+}
 
 }

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Notifications\VerifyEmail;
 
-
 class UserController extends Controller
 {
     /**

@@ -48,6 +48,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
     Route::get('user', [UserController::class,'index'])->name('user');
     Route::get('updateUser/{id}', [UserController::class,'edit']);
     Route::put('updateUs/{id}', [UserController::class,'update'])->name('updateUs');
+    
 });
 Route::post('login', [LoginController::class, 'login'])->name('login');
 

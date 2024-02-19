@@ -19,6 +19,7 @@ use App\Http\Controllers\CarController;
 //Route::get('/', function () {
   //  return view('welcome');
 //});
+Route::fallback(IndexController::class);
 Route::get('/', [IndexController::class,'home'])->name('index');
 Route::get('listing', [IndexController::class,'listing'])->name('listing');
 Route::get('testimonial', [IndexController::class,'testimonial'])->name('testimonial');
