@@ -74,10 +74,12 @@ class UserController extends Controller
             'fullName'=>'required|string|max:50',
             'userName'=>'required|string|max:50',
             'email'=> 'required|string|email|max:255',
-            'password' => 'sometimes|string|min:8',
+            'password' => 'nullable|string|min:8',
             
             ]);        
             $data['active']= isset($request->active);
+            if (empty($data['password'])) unset($data['password']);
+        else $data['password'] = Hash::make($data['password']);
             
            User::where('id', $id)->update($data);
            $user = User::findOrFail($id);
