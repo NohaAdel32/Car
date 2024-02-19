@@ -74,17 +74,10 @@ class UserController extends Controller
             'fullName'=>'required|string|max:50',
             'userName'=>'required|string|max:50',
             'email'=> 'required|string|email|max:255',
-            'password' => 'nullable|string|min:8',
+            'password' => 'sometimes|string|min:8',
             
             ]);        
             $data['active']= isset($request->active);
-            // Check if password is provided and update it accordingly
-        if ($request->has('password')) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            // Remove the password from the data array
-            unset($data['password']);
-        }
             
            User::where('id', $id)->update($data);
            $user = User::findOrFail($id);
