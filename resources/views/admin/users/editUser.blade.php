@@ -49,7 +49,7 @@
 			<label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Password <span class="required">*</span>
 			</label>
 			<div class="col-md-6 col-sm-6 ">
-				<input type="password" id="password" name="password"  class="form-control" value="{{$user->password}}">
+				<input type="password" id="password" name="password"  class="form-control" >
 				<div style="color : red;">
 					@error('password')
                       {{$message}}
